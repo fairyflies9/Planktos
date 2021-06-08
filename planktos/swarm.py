@@ -29,6 +29,7 @@ __email__ = "cstric12@utk.edu"
 __copyright__ = "Copyright 2017, Christopher Strickland"
 
 class swarm:
+<<<<<<< HEAD
     '''
     Fundamental Planktos object describing a group of similar agents.
 
@@ -204,9 +205,54 @@ class swarm:
     >>> swrm = swarm(envir=envir)
 
     '''
+=======
+>>>>>>> parent of 275ece6 (Some progress on swarm docstring)
 
     def __init__(self, swarm_size=100, envir=None, init='random', seed=None, 
                  shared_props=None, props=None, **kwargs):
+        ''' Initializes planktos swarm in an environment.
+
+        Arguments:
+            swarm_size: Size of the swarm (int). ignored for 'grid' init method.
+            envir: environment for the swarm, defaults to the standard environment
+            init: Method for initalizing positions. See below.
+            seed: Seed for random number generator, int or None
+            shared_props: dictionary of properties shared by all agents
+            props: Pandas dataframe of individual agent properties
+            kwargs: keyword arguments to be set as a swarm property. They can
+                be floats, ndarrays, or iterables, but keep in mind that
+                problems will result with parsing if the number of agents is
+                equal to the spatial dimension - this is to be avoided.
+                Example key word arguments to include are:  
+                diam -- diameter of the particles
+                m -- mass of the particles
+                Cd -- drag coefficient of the particles
+                cross_sec -- cross-sectional area of the particles
+                R -- density ratio
+
+        Methods for initializing the swarm positions:
+            - 'random': Uniform random distribution throughout the domain
+            - 'grid': Uniform grid on interior of the domain, including capability
+                to leave out closed immersed structures. In this case, swarm_size 
+                is ignored since it is determined by the grid dimensions.
+                Requires the additional keyword parameters:
+                grid_dim = tuple of number of grid points in x, y, [and z] directions
+                testdir: (optional) two character string for testing if points 
+                    are in the interior of an immersed structure and if so, masking
+                    them. The first char is x,y, or z denoting the dimensional direction
+                    of the search ray, the second is either 0 or 1 denoting the 
+                    direction (backward vs. forward) along that direction. See 
+                    documentation of swarm.grid_init for more information.
+            - 1D array-like: All positions set to a single point.
+            - 2D array: All positions as specified. Shape NxD, D=dim of space.
+                In this case, swarm_size is ignored.
+        
+        Initial agent velocities will be set as the local fluid velocity if present,
+        otherwise zero. Assign to self.velocities to set your own.
+
+        To customize agent behavior, subclass this class and re-implement the
+        method get_positions (do not change the call signature).
+        '''
 
         # use a new, 3D default environment if one was not given. Or infer
         #   dimension from init if possible.

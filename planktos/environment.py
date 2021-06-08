@@ -114,6 +114,7 @@ class environment:
 
     Attributes
     ----------
+<<<<<<< HEAD
     L : list of floats
         length of the domain [x, y, [z]] in the stated units
     units : str
@@ -124,6 +125,8 @@ class environment:
         Boundary conditions in each direction [x, y, [z]] for agents
     swarms : list of swarm objects
         The swarms that belong to this environment
+=======
+>>>>>>> parent of 275ece6 (Some progress on swarm docstring)
     time : float
         current environment time
     time_history : list of floats
